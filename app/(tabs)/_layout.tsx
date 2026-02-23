@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 
@@ -8,13 +7,16 @@ const _layout = () => {
       screenOptions={{
         headerShown: false,
         tabBarInactiveTintColor: "#CDCDE0",
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: "#fff",
           borderTopWidth: 1,
           borderTopColor: "#F0F0F0",
           height: 56,
-          paddingTop: 8,
+          paddingTop: 4,
+          paddingBottom:4,
+          margin: 6,
+          borderRadius: 20,
         },
       }}
     >
@@ -25,16 +27,21 @@ const _layout = () => {
           headerShown: false,
         }}
       />
-
       <Tabs.Screen
-        name="index"
+      name="product"
+      options={{
+        title:"product",
+        headerShown: false
+      }} />
+      <Tabs.Screen
+        name="about"
         options={{
           title: "about",
           headerShown: false,
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="contact"
         options={{
           title: "contact",
           headerShown: false,
