@@ -1,6 +1,6 @@
-import { View, Text, Pressable, Image } from 'react-native'
+import { View, Text, Pressable} from 'react-native'
 import React from 'react'
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {Ionicons} from '@expo/vector-icons';
 
 const Header = () => {
   return (

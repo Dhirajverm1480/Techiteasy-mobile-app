@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <Header />
-      <Hero />
+      {/* <Hero /> */}
     </SafeAreaView>
   );
 };
