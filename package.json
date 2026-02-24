@@ -1,5 +1,6 @@
 {
   "name": "tech-it-easy-app",
+  "description": "TechItEasy offers curated tech gear for gamers, readers, softwares and tech lovers. Upgrade your setup with ease.",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
