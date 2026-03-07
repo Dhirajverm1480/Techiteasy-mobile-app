@@ -152,3 +152,18 @@ export const Banners: Banner[] = [
     end_date: "2026-05-01",
   },
 ];
+
+export interface category_Interface {
+  id: String,
+  name: String
+}
+
+export const Category: category_Interface[] = [
+  {id: '001', name: "Electronic"},
+  {id: '002', name: "Smart Phone"},
+  {id: '003', name: "Games"},
+  {id: '004', name: "Book"},
+  {id: '004', name: "Laptop"},
+  {id: '005', name: 'Watches'},
+  {id: '006', name: "Software"},
+]

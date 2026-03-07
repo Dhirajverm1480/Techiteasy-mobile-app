@@ -6,14 +6,29 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
-import { Banners } from "@/constants/constant";
+import { Banners, Category } from "@/constants/constant";
 
 const { width } = Dimensions.get("window");
 
 const Home = () => {
+  const [products, setProducts] = useState([])
+  // "https://dummyjson.com/products"
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("https://dummyjson.com/products");
+      setProducts(response.data)
+      console.log("Res : ", response.data)
+    } catch (error) {
+      console.log("Fetch Err : ", error)
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  },[])
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <Header />
@@ -53,7 +68,15 @@ const Home = () => {
             </View>
           ))}
         </ScrollView>
-        
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {Category.map((item, index) => (
+            <View key={index} className="py-3 px-3 bg-gray-300 mr-3 my-4 rounded-md">
+              <TouchableOpacity>
+                <Text>{item.name}</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </ScrollView>
       </ScrollView>
     </SafeAreaView>
   );
