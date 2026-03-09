@@ -11,17 +11,30 @@ import axios from 'axios';
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import { Banners, Category } from "@/constants/constant";
+import Title from "@/components/Title";
 
 const { width } = Dimensions.get("window");
 
+type Product = {
+  id: number,
+  title: String,
+  price: number,
+  thumbnail: String,
+  description: String,
+}
+
+type productResponse = {
+  products: Product[]
+}
+
 const Home = () => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<Product[]>([])
   // "https://dummyjson.com/products"
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://dummyjson.com/products");
-      setProducts(response.data)
-      console.log("Res : ", response.data)
+      const response = await axios.get<productResponse>("https://dummyjson.com/products");
+      setProducts(response.data.products)
+      // console.log("Res : ", response.data.products)
     } catch (error) {
       console.log("Fetch Err : ", error)
     }
@@ -77,6 +90,24 @@ const Home = () => {
             </View>
           ))}
         </ScrollView>
+        <Title title={"Latest Product"} />
+        {products.map((item) => (
+  <TouchableOpacity
+    key={item.id}
+    className="bg-gray-200 p-3 rounded-lg mb-3 flex-row"
+  >
+    <Image
+      source={{ uri: item.thumbnail }}
+      className="w-16 h-16 rounded-md"
+    />
+
+    <View className="ml-3 flex-1">
+      <Text className="font-bold">{item.title}</Text>
+      <Text numberOfLines={2}>{item.description}</Text>
+      <Text className="font-bold mt-1">${item.price}</Text>
+    </View>
+  </TouchableOpacity>
+))}
       </ScrollView>
     </SafeAreaView>
   );
