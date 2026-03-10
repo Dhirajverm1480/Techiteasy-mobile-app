@@ -15,8 +15,8 @@ export const useProduct = () => {
         setLoading(true)
         try {
             const data = await getProducts();
-            console.log("DATA: ", data)
-            setProducts(data.products)
+            // console.log("DATA: : : :  ", data)
+            setProducts(data.products || [])
             setLoading(false)
         } catch (error) {
             console.log("Err: ",error)

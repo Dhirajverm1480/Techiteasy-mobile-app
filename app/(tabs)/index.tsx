@@ -7,62 +7,46 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import { Banners, Category } from "@/constants/constant";
-import Title from "@/components/Title";
-// import { ImageSourcePropType } from "react-native";
-// const imageSource: ImageSourcePropType = { uri: item.image_url };
+import { useProduct } from "@/hooks/useProduct";
 
 const { width } = Dimensions.get("window");
 
-type Product = {
-  id: number;
-  title: String;
-  price: number;
-  thumbnail: String;
-  description: String;
-};
-
-type productResponse = {
-  products: Product[];
-};
-
 const Home = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
-  // "https://dummyjson.com/products"
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get<productResponse>(
-        "https://dummyjson.com/products",
-      );
-      setProducts(response.data.products);
-      setLoading(false);
-      // console.log("Res : ", response.data.products)
-    } catch (error) {
-      console.log("Fetch Err : ", error);
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { products, loading } = useProduct();
+  // console.log("Product::: ", products);
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-2xl font-bold text-orange-300 animate-pulse">
+          Loading...
+        </Text>
+        <Text className="text-3xl font-bold text-orange-300 animate-spin">
+          |
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <Header />
-
       <FlatList
         data={products}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={{ paddingBottom: 20 }}
+        numColumns={2}
+        contentContainerStyle={{ padding: 2 }}
         initialNumToRender={10}
+        ListEmptyComponent={
+          <View className="items-center mt-10">
+            <Text>No products found</Text>
+          </View>
+        }
         ListHeaderComponent={
-          <ScrollView className="flex-1 px-4 pt-2">
+          <View className="h-72 px-4 pt-2">
             <ScrollView
               horizontal
               pagingEnabled
@@ -110,10 +94,10 @@ const Home = () => {
                 </View>
               ))}
             </ScrollView>
-          </ScrollView>
+          </View>
         }
         renderItem={({ item }) => (
-          <TouchableOpacity className="bg-gray-200 p-3 rounded-lg mb-3 flex-row">
+          <TouchableOpacity className="w-48 h-48 bg-gray-200 p-3 mx-2 rounded-lg mb-3 shadow-md">
             <Image
               source={{ uri: item.thumbnail as any }}
               className="w-16 h-16 rounded-md"
