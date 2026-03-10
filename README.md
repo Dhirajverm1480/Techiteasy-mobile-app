@@ -1,5 +1,41 @@
-# Welcome TechItEasy-Mobile-app 👋
-This is a full stact Mobile app. That's contain product listing, Cart functionality, Search and Filter, Add User Review and Many More.
+# 📱 TechItEasy Mobile App
+
+TechItEasy is a **full-stack mobile application** designed to provide a seamless e-commerce experience. The app allows users to browse products, search and filter items, manage their shopping cart, and share reviews. It combines a modern mobile interface with a robust backend to deliver a fast and reliable shopping platform.
+
+---
+
+## 🚀 Features
+
+- 🛍️ **Product Listing** – Browse a wide range of available products.
+- 🔍 **Search Functionality** – Quickly find products using the search feature.
+- 🎯 **Advanced Filters** – Filter products based on categories or preferences.
+- 🛒 **Cart Management** – Add, remove, and manage items in your cart.
+- ⭐ **User Reviews** – Users can add reviews and ratings for products.
+- 👤 **User Authentication** – Secure login and registration system.
+- 📦 **Order Management** – Track and manage user orders.
+- 📱 **Responsive Mobile UI** – Optimized for a smooth mobile experience.
+
+---
+
+## 🏗️ Tech Stack
+
+### Frontend (Mobile)
+- React Native
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB
+
+### Other Tools
+- Git & GitHub
+- REST APIs
+- JWT Authentication
+
+---
 
 # This is Expo Setup
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
