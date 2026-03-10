@@ -153,17 +153,31 @@ export const Banners: Banner[] = [
   },
 ];
 
-export interface category_Interface {
-  id: String,
-  name: String
+// export interface category_Interface {
+//   id: String,
+//   name: String
+// }
+
+// export const Category: category_Interface[] = [
+//   {id: '001', name: "Electronic"},
+//   {id: '002', name: "Smart Phone"},
+//   {id: '003', name: "Games"},
+//   {id: '004', name: "Book"},
+//   {id: '004', name: "Laptop"},
+//   {id: '005', name: 'Watches'},
+//   {id: '006', name: "Software"},
+// ]
+
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  icon: string;
 }
 
-export const Category: category_Interface[] = [
-  {id: '001', name: "Electronic"},
-  {id: '002', name: "Smart Phone"},
-  {id: '003', name: "Games"},
-  {id: '004', name: "Book"},
-  {id: '004', name: "Laptop"},
-  {id: '005', name: 'Watches'},
-  {id: '006', name: "Software"},
-]
+export const categories: Category[] = [
+  { id: 1, name: "beauty", slug: "beauty", icon: "sparkles" },
+  { id: 2, name: "fragrances", slug: "fragrances", icon: "spray-can" },
+  { id: 3, name: "furniture", slug: "furniture", icon: "sofa" },
+  { id: 4, name: "groceries", slug: "groceries", icon: "shopping-basket" }
+];

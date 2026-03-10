@@ -10,10 +10,12 @@ import {
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
-import { Banners, Category } from "@/constants/constant";
+import { Banners, categories } from "@/constants/constant";
 import { useProduct } from "@/hooks/useProduct";
 
 const { width } = Dimensions.get("window");
+const bannerWidth = width - 32;
+const bannerHeight = width * 0.49;
 
 const Home = () => {
   const { products, loading } = useProduct();
@@ -51,18 +53,20 @@ const Home = () => {
               horizontal
               pagingEnabled
               showsHorizontalScrollIndicator={false}
-              className="w-full h-48 rounded-xl"
+              className="w-full h-48 bg-orange-400 rounded-xl"
               scrollEventThrottle={18}
             >
               {Banners.map((item) => (
                 <View
                   key={item.id}
                   className="relative w-full h-48 bg-gray-200 overflow-hidden"
-                  style={{ width: width - 28 }}
+                  // style={{ width: width - 28 }}
+                  style={{ width: bannerWidth, height: bannerHeight }}
                 >
                   <Image
                     source={item.image_url as any}
-                    className="w-full h-full"
+                    // className="w-full h-full object-center"
+                    style={{ width: "100%", height: "100%" }}
                     resizeMode="cover"
                   />
                   <View className="absolute bottom-4 left-4 z-10">
@@ -83,10 +87,10 @@ const Home = () => {
               ))}
             </ScrollView>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {Category.map((item, index) => (
+              {categories.map((item, index) => (
                 <View
                   key={index}
-                  className="py-3 px-3 bg-gray-300 mr-3 my-4 rounded-md"
+                  className="py-2 px-3 bg-gray-300 mr-3 my-4 items-center rounded-md"
                 >
                   <TouchableOpacity>
                     <Text>{item.name}</Text>
@@ -97,14 +101,14 @@ const Home = () => {
           </View>
         }
         renderItem={({ item }) => (
-          <TouchableOpacity className="w-48 h-48 bg-gray-200 p-3 mx-2 rounded-lg mb-3 shadow-md">
+          <TouchableOpacity className="w-48 h-72 bg-gray-200 p-3 mx-2 rounded-lg mb-3 shadow-md">
             <Image
               source={{ uri: item.thumbnail as any }}
-              className="w-16 h-16 rounded-md"
+              className="w-full h-48 rounded-md"
             />
             <View className="ml-3 flex-1">
               <Text className="font-bold">{item.title}</Text>
-              <Text numberOfLines={2}>{item.description}</Text>
+              {/* <Text numberOfLines={2}>{item.description}</Text> */}
               <Text className="font-bold mt-1">${item.price}</Text>
             </View>
           </TouchableOpacity>
